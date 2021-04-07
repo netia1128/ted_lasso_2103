@@ -11,10 +11,6 @@ class Team
     @players = players
   end
 
-  def eliminated?
-    eliminated
-  end
-
   def total_salary
     players.sum do |player|
       player.salary
