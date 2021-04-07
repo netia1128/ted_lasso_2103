@@ -42,4 +42,21 @@ RSpec.describe Team do
       expect(@premier.players_by_team).to eq({@richmond => [@roy.name, @sam.name], @manchester => [@jamie.name, @fernandinho.name]})
     end
   end
+  describe '#most_expensive_player' do
+    it 'relays who the most expensive player is' do
+      expect(@premier.most_expensive_player).to eq(@fernandinho)
+    end
+  end
+  describe '#players_by_salary_range' do
+    it 'creates a hash of players by salary range' do
+      expect(@premier.players_by_salary_range).to eq({
+           "Over 0M" => ["Sam Obisanya"],
+           "Over 1M" => ["Roy Kent", "Jamie Tartt"],
+           "Over 2M" => [],
+           "Over 3M" => [],
+           "Over 4M" => [],
+           "Over 5M" => ["Fernandinho"],
+         })
+    end
+  end
 end

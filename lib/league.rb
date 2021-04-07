@@ -42,4 +42,33 @@ class League
       end
     end
   end
-end
+
+  def most_expensive_player
+    capitans.max_by do |player|
+      player.salary
+    end
+  end
+
+  def players_by_salary_range
+    hash = {}
+    count = 0
+    top_bracket = (most_expensive_player.salary / 1_000_000) + 1
+    top_bracket.times do
+      hash["Over #{count}M"] = players_in_bracket(count)
+      count += 1
+    end
+    hash
+  end
+
+    def players_in_bracket(count)
+      players_in_bracket = []
+      @teams.each do |team|
+        team.players.each do |player|
+          if player.salary >= count * 1000000 && player.salary < (count + 1) * 1000000
+            players_in_bracket << player.name
+          end
+        end
+      end
+      players_in_bracket
+    end
+  end
